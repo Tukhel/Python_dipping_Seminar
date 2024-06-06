@@ -37,18 +37,18 @@ def deposit(amount):
 def withdraw(amount):
     """Снятие средств."""
     global bank_account, operations
-    check_multiplicity(amount)
-    commission: Decimal = min(MAX_REMOVAL, max(MIN_REMOVAL, amount *
-                                               PERCENT_REMOVAL))
-    amount_commission: Decimal = Decimal(amount) + Decimal(commission)
+    if check_multiplicity(amount):
+        commission: Decimal = min(MAX_REMOVAL, max(MIN_REMOVAL, amount *
+                                                   PERCENT_REMOVAL))
+        amount_commission: Decimal = Decimal(amount) + Decimal(commission)
 
-    if amount_commission > bank_account:
-        operations.append(
-            f"Недостаточно средств. Сумма с комиссией {amount_commission} у.е. На карте {bank_account} у.е.")
-    else:
-        bank_account -= Decimal(amount) + commission
-        operations.append(
-            f"Снятие с карты {amount} у.е. Процент за снятие {commission} у.е.. Итого {bank_account} у.е.")
+        if amount_commission > bank_account:
+            operations.append(
+                f"Недостаточно средств. Сумма с комиссией {amount_commission} у.е. На карте {bank_account} у.е.")
+        else:
+            bank_account -= Decimal(amount) + commission
+            operations.append(
+                f"Снятие с карты {amount} у.е. Процент за снятие {commission} у.е.. Итого {bank_account} у.е.")
 
 
 def exit():
@@ -62,8 +62,8 @@ def exit():
     operations.append(f"Возьмите карту на которой {bank_account} у.е.")
 
 
-deposit(10000)
-withdraw(4000)
+deposit(51)
+withdraw(137)
 exit()
 
 print(operations)
