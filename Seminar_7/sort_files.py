@@ -32,4 +32,6 @@ def sort_files(path: str | Path, groups: dict[Path, list[str]] = None) -> None:
 
 path_files = r'D:\Education\Python\Dipping\Seminars\Seminar_7\S7\test'
 # gf.gen_files(path_files, avi=2, mkv=3, png=1, jpeg=1, mp3=3, txt=2)
-sort_files(path_files)
+
+if __name__ == '__main__':
+    sort_files(path_files)
